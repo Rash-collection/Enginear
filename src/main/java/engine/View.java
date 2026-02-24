@@ -52,6 +52,9 @@ public class View {
     public Ranged getBounds(){return this.boundary;}
 //    public Ranged getBounds(){return this.boundary;}
 //    public Rectangle zoomer(){return this.boundary.rectangle();}
+    public Rectangle projector(){
+        return this.boundary.rectangle();
+    }
     public Rectangle zoomer(){
 //        final var bnd = 
                 return new Ranged(this.boundary.getCenter(), 

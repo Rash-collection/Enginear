@@ -90,7 +90,7 @@ public class Valley extends MultiViews<Valley>{
 //                        System.gc();
 //                    }
                 })
-                .setViewable((grr, bnd, del)->{
+                .setViewable((grr, bnd, del, cull)->{
                     final var scrn = main.getView().screen();
                     final var ter = main.getEntities();
                     final var olc = grr.getClip();
@@ -99,19 +99,19 @@ public class Valley extends MultiViews<Valley>{
                     grr.fill(scrn);
                     synchronized(main.lock()){
                         for(var terrain : ter){
-                            if(terrain instanceof Terrain trn)trn.render(grr, bnd, del);
+                            if(terrain instanceof Terrain trn)trn.render(grr, bnd, del, cull);
                         }
                     }
                     synchronized(this.lockCons){
                         for(var con : this.consumables){
-                            con.render(grr, bnd, del);
+                            con.render(grr, bnd, del, cull);
                         }
                     }
-                    msge.render(grr, bnd, del);
+                    msge.render(grr, bnd, del, cull);
                     synchronized(this.PLAYER.lock()){
-                        this.PLAYER.render(grr, bnd, del);
+                        this.PLAYER.render(grr, bnd, del, cull);
                     }
-                    if(this.pause != null) this.pause.render(grr, bnd, del);
+                    if(this.pause != null) this.pause.render(grr, bnd, del, cull);
                     grr.setClip(olc);
                     grr.setColor(Color.BLACK);
                     grr.draw(scrn);

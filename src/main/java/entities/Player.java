@@ -33,8 +33,8 @@ public class Player extends Bounded<Player>
     
     @Override public void update() {
     }
-    @Override public void render(Graphics2D grr, Rectangle range, Point delta) {
-        if(!range.contains(this.boundary.getCenter().point()))return;
+    @Override public void render(Graphics2D grr, Rectangle range, Point delta, Rectangle cull) {
+        if(!cull.contains(this.boundary.getCenter().point()))return;
         final var bnd = this.boundary.scale(Launcher.escalator).rectangle();
         final int xx = bnd.x - delta.x, yy = bnd.y - delta.y;
         final int lfw = bnd.width/2, lfh = bnd.height/2;

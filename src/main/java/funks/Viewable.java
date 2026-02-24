@@ -18,5 +18,5 @@ public interface Viewable extends Renderer{
         throw new UnsupportedOperationException(
                 "This instance is View-aware, didn't implement the one-param render method.");
     }
-    void render(Graphics2D grr, Rectangle screening, Point delta);
+    void render(Graphics2D grr, Rectangle screening, Point delta, Rectangle cull);
 }

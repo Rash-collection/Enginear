@@ -59,8 +59,12 @@ public class MultiViews <M extends MultiViews <M>> extends engine.Scene<M>
         for(var scene : this.SUB_SCENE.values()){
             if(!scene.isActive())continue;
             if(scene instanceof ViewableScene vew && vew.getRender() instanceof funks.Viewable vb){
-                final var zoom = vew.getView().zoomer();
-                vb.render(grr, zoom, vew.getView().getDelta(zoom));
+//                final var zoom = vew.getView().zoomer();
+                final var cull = vew.getView().zoomer();
+                final var proj = vew.getView().projector();
+
+                vb.render(grr, proj, vew.getView().getDelta(proj), cull);
+//                vb.render(grr, zoom, vew.getView().getDelta(zoom));
             } else scene.getRender().render(grr);
         }
     }

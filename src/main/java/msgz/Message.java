@@ -58,8 +58,8 @@ public class Message extends Bounded<Message> implements Viewable, Updater, Exha
     }
     @Override public boolean consumed(){return this.timeLeft <= 0;}
     /**overrides Viewable overloaded(unimplemented) render method.*/
-    @Override public void render(Graphics2D grr, Rectangle range, Point delta) {
-        if(!range.contains(this.boundary.getCenter().point()))return;
+    @Override public void render(Graphics2D grr, Rectangle range, Point delta, Rectangle cull) {
+        if(!cull.contains(this.boundary.getCenter().point()))return;
         final var bnd = this.boundary.rectangle();
         final int xx = bnd.x - delta.x, yy = bnd.y - delta.y;
         final var comp = grr.getComposite();

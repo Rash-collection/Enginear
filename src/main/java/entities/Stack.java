@@ -27,8 +27,8 @@ public abstract class Stack <T extends Stack<T, U>, U extends AbsMaterials<U>> e
     /**if not implemented, it return true when it's empty amount!!*/
     @Override public boolean consumed() {return this.source.mats.isEmpty();}
     
-    @Override public void render(Graphics2D grr, Rectangle vew, Point del) {
-        if(!vew.contains(this.boundary.getCenter().point())) return; // early skip
+    @Override public void render(Graphics2D grr, Rectangle vew, Point del, Rectangle cull) {
+        if(!cull.contains(this.boundary.getCenter().point())) return; // early skip
         final var bnd = this.boundary.scale(Launcher.escalator).rectangle();
         synchronized(this.lock()){
             grr.drawImage(this.sprite,

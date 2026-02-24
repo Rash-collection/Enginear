@@ -31,8 +31,8 @@ public class Terrain <T extends Terrain<T>> extends Bounded<T>
         return this.self();
     }
     
-    @Override public void render(Graphics2D grr, Rectangle bnd, Point del) {
-        if(!bnd.contains(this.boundary.getCenter().point()))return;
+    @Override public void render(Graphics2D grr, Rectangle bnd, Point del, Rectangle cull) {
+        if(!cull.contains(this.boundary.getCenter().point()))return;
         final var bnds = this.boundary.scale(Launcher.escalator).rectangle();
         synchronized(this.lock()){
             grr.drawImage(this.sprite, bnds.x - del.x, bnds.y - del.y, bnds.width, bnds.height, null);
